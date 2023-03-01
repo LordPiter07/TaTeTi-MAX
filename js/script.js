@@ -4,12 +4,13 @@ const btnReset = document.getElementById('reset');
 //imprimir fichas
 btn.forEach((item, index) => item.addEventListener('click', (e) => btnOnClick(e, index)));
 //reset tablero
-btnReset.addEventListener('click', () =>{
-    btn.forEach(element => element.innerHTML = "");
-})
+btnReset.addEventListener('click', () => { 
+    btn.forEach(element => element.innerHTML ="")});
+    
 
 // defino la variable que va a indicar el orden de los turnos y el array que contendra los elementos que conforman el tablero.
 let turno = 0;
+let gano = false;
 const tablero = [];
 
 // establezco los turnos y el orden en que se juegan las fichas. Anuncio si existe un ganador
@@ -21,14 +22,13 @@ btnOnClick = (e, pos) => {
     tablero[pos] = ficha;
     if(ganar()){
         Swal.fire(`VICTORIA!\nFelicitaciones Jugador ${ficha}`)
+        .then((result) => {location.reload()});
     }
 }
 
 // controlo si existen 3 fichas iguales alineadas en mi array(tablero)
 const ganar = () => {
-
-    let gano = false;
-
+    
     //controlo las filas - orden horizontal
     if(tablero[0] == tablero[1] && tablero[0] == tablero[2] && tablero[0]){
         gano = true;
